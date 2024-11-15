@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Size;
 use Illuminate\Http\Request;
-use App\Models\Category;
 
-
-class CategoriesController extends Controller
+class SizesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'DESC')->get();
-        return view('categories.index', compact('categories'));
+        $sizes = Size::orderBy('created_at', 'DESC')->get();
+        return view('sizes.index', compact('sizes'));
+
     }
 
     /**
@@ -22,33 +22,32 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view(view: 'categories.create');
+        return view('sizes.create');
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-  public function store(Request $request)
-{
-    // Validation
+    public function store(Request $request)
+    {
+         // Validation
     $request->validate([
-        'name' => 'required|min:2|max:50|unique:categories,name',
+        'size' => 'required|min:1|max:50|unique:sizes',
     ]);
 
     // Création de la nouvelle catégorie
-    $category = new Category();
-    $category->name = $request->name;
-    $category->save();
+    $size = new Size();
+    $size->size = $request->size;
+    $size->save();
 
     // Message de succès
-    flash('Category created successfully')->success();
+    flash('Size created successfully')->success();
 
     // Rediriger vers la liste des catégories
-    return redirect()->route('categories.index');
-}
+    return redirect()->route('sizes.index');
 
-    
-
+    }
 
     /**
      * Display the specified resource.
@@ -63,8 +62,9 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
-        return view('categories.edit', compact('category'));
+        $size = Size::findOrFail($id);
+        return view('sizes.edit', compact('size'));
+
     }
 
     /**
@@ -72,39 +72,37 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Validation
-        $request->validate([
-            'name' => 'required|min:2|max:50|unique:categories,name,' . $id,
+         // Validation
+         $request->validate([
+            'size' => 'required|min:1|max:50|unique:sizes,size,' . $id,
         ]);
     
         // Trouver la catégorie par ID ou échouer
-        $category = Category::findOrFail($id);
+        $size = Size::findOrFail($id);
     
         // Mettre à jour le nom de la catégorie
-        $category->name = $request->name;
-        $category->save();
+        $size->size = $request->size;
+        $size->save();
     
         // Flash message de succès
-        flash('Category updated successfully')->success();
+        flash('Size updated successfully')->success();
     
         // Rediriger vers la page des catégories
-        return redirect()->route('categories.index');
+        return redirect()->route('sizes.index');
     }
-    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $size = Size::findOrFail($id);
+        $size->delete();
 
-        flash('Category deleted successfully')->success();
+        flash('Size deleted successfully')->success();
         // Rediriger vers la page des catégories
-        return redirect()->route('categories.index');
+        return redirect()->route('sizes.index');
 
 
-        
     }
 }
