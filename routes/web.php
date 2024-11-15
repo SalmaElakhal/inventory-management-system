@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,12 +22,19 @@ Route::middleware([
 Route::middleware(['auth:sanctum'])->group(function(){
     //Category
     Route::resource('/categories', CategoriesController::class); 
+        //Brand
+        Route::resource('/brands', BrandsController::class); 
+
 
 });
+
+
 
 // Route::get('/template', function(){
 //     return view('layouts.master');
 // });
+
+
 
 
 
