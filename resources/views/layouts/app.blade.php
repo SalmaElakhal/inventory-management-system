@@ -18,11 +18,16 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        <div id="app">
+            <exemple-component></exemple-component>
+
+        </div>
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
 
+            @livewire('navigation-menu')
+<
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">

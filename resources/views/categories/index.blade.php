@@ -16,15 +16,16 @@
         </div><!-- /.container-fluid -->
     </div>
 
-    <div class="content">
+    <div  class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card card-primary card-outline">
-                        <div class="card-body">
+                        <div id="app" class="card-body">
                             <h5 class="card-title">Category List</h5> <br>
 
                             <a href="{{route('categories.create')}}" class="btn btn-sm btn-primary" ><i class="fa fa-plus"></i>Add category</a> <br> <br>
+                            <exemple-component></exemple-component>
 
                             <table class="table table-bordered datatable">
 
