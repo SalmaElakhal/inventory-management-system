@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use Illuminate\Http\Response as HttpResponse;
+use Laravel\Pail\ValueObjects\Origin\Console;
 
 class CategoriesController extends Controller
 {
@@ -91,7 +92,6 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index');
     }
     
-
     /**
      * Remove the specified resource from storage.
      */
@@ -103,8 +103,15 @@ class CategoriesController extends Controller
         flash('Category deleted successfully')->success();
         // Rediriger vers la page des catégories
         return redirect()->route('categories.index');
-
-
-        
     }
+
+    public function getCategoriesJson(){
+        $categories = Category::all();
+        return response()->json([
+            'success' => true,
+            'data' => $categories,
+        ], HttpResponse::HTTP_OK);
+     
+    }
+    
 }

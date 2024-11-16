@@ -1,30 +1,33 @@
 @extends('layouts.master')
+
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Categories</h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Category List </li>
                     </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div  class="content">
+    <div id="app" class="content"> <!-- Important: Ajoute l'ID "app" ici -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card card-primary card-outline">
-                        <div id="app" class="card-body">
+                        <div class="card-body">
                             <h5 class="card-title">Category List</h5> <br>
 
-                            <a href="{{route('categories.create')}}" class="btn btn-sm btn-primary" ><i class="fa fa-plus"></i>Add category</a> <br> <br>
+                            <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add category</a> <br> <br>
+
+                            <!-- Le composant Vue va être monté ici -->
                             <exemple-component></exemple-component>
 
                             <table class="table table-bordered datatable">
@@ -75,3 +78,4 @@
     </div>
     <!-- /.content -->
 @endsection
+
