@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SizesController extends Controller
 {
@@ -102,7 +103,14 @@ class SizesController extends Controller
         flash('Size deleted successfully')->success();
         // Rediriger vers la page des catégories
         return redirect()->route('sizes.index');
+    }
 
-
+    public function getSizesJson(){
+        $sizes = Size::all();
+        return response()->json([
+            'success' => true,
+            'data' => $sizes,
+        ], Response::HTTP_OK);
+     
     }
 }

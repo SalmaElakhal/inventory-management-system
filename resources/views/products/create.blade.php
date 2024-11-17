@@ -21,12 +21,7 @@
 
 <div id="app" class="content"> <!-- Important: Ajoute un ID "app" -->
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Utilisation du composant ProductAdd -->
                 <product-add></product-add>
-            </div>
-        </div>
     </div>
 </div>
 @endsection
