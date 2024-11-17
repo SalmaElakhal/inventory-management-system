@@ -1,12 +1,19 @@
 import { createStore } from 'vuex';
 import categories from './modules/categories';  // Importer le module des catégories
+import brands from './modules/brands';  // Importer le module des catégories
 
 const store = createStore({
   modules: {
-    categories  // Déclarer le module
+    categories,  // Déclarer le module
+    brands
   }
 });
 
+// export default new Vuex.Store({
+//     module : {
+//         categories,
+//     }
+// })
 export default store;
 
 // import Vue from 'vue'
@@ -18,8 +25,3 @@ export default store;
 // //Modules
 // import categories from './modules/categories';
 
-// export default new Vuex.Store({
-//     module : {
-//         categories,
-//     }
-// })

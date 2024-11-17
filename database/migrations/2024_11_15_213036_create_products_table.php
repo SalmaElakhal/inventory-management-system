@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('retail_price', 8, 2);
             $table->decimal('year',  4);
             $table->decimal('description');
-            $table->boolean(App\Models\Product::STATUS_ACTIVE);
+            $table->boolean('status')->default(App\Models\Product::STATUS_ACTIVE);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

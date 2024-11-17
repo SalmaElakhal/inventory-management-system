@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Category;
+
 use Illuminate\Http\Response as HttpResponse;
 use Laravel\Pail\ValueObjects\Origin\Console;
 
@@ -110,7 +112,7 @@ class CategoriesController extends Controller
         return response()->json([
             'success' => true,
             'data' => $categories,
-        ], HttpResponse::HTTP_OK);
+        ], Response::HTTP_OK);
      
     }
     

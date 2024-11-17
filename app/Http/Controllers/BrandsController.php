@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class BrandsController extends Controller
 {
@@ -101,6 +102,14 @@ class BrandsController extends Controller
         // Rediriger vers la page des catégories
         return redirect()->route('brands.index');
 
+    }
 
+    public function getBrandsJson(){
+        $brands = Brand::all();
+        return response()->json([
+            'success' => true,
+            'data' => $brands,
+        ], Response::HTTP_OK);
+     
     }
 }

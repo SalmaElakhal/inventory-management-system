@@ -7,12 +7,24 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>Category</label>
-                           <select class="form-control">
-                           <option v-for="(item, index) in categories" :key="index" :value="item.id">{{ item.name }}</option>
+                           <select class="form-control" >
+                            <option value="" disabled selected>Select a category</option>
+                           <option v-for="(item, index) in categories" :key="index" :value="item.id" >{{ item.name }}</option>
                         </select>
-                        <Select2 v-model="form.category_id" :options="categories" :settings="{ placeholder: 'Selected category'} " ></Select2>
+                        <!-- <Select2 v-model="form.brand_id" :options="categories" :settings="{ placeholder: 'Selected category'} " ></Select2> -->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Brands</label>
+                           <select class="form-control" >
+                            <option value="" disabled selected>Select a brands</option>
+                           <option v-for="(item, index) in brands" :key="index" :value="item.id" >{{ item.name }}</option>
+                        </select>
                     </div>
                 </div>
+
+
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Submit</button>
                 </div>
@@ -28,6 +40,7 @@ import { mapGetters } from 'vuex';
 import Select2 from 'vue3-select2-component'; // Import Select2
 
 export default {
+    components:{Select2},
     methods: {
     },
     name: 'ProductAdd',
@@ -35,17 +48,20 @@ export default {
     data() {
         return {
             form: {
-                category_id: 0 // Ensure this is a string or array
+                category_id: 0, // Ensure this is a string or array
+                brand_id: 0, // Ensure this is a string or array
             }
         };
     },
     computed: {
         ...mapGetters({
-            categories: 'getCategories'
+            categories: 'getCategories',
+            brands : 'getBrands',
         })
     },
     mounted() {
         store.dispatch(actions.GET_CATEGORIES); // Dispatching action
+        store.dispatch(actions.GET_BRANDS); // Dispatching action
 
     //     this.$nextTick(() => {
     //   // Initialiser Select2 sur l'élément
