@@ -12,6 +12,9 @@ export default defineConfig({
         }),
         vue()
     ],
+     optimizeDeps: {
+    include: ['jquery']  // Assurez-vous que jQuery est bien inclus dans l'optimisation des dépendances
+  },
     resolve: {
         alias: {
             vue : 'vue/dist/vue.esm-bundler.js'

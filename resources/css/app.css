@@ -1,3 +1,5 @@
+/* Ajoutez ce lien dans votre fichier app.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,13 +1,16 @@
-import { createApp } from 'vue'; // Importation de Vue 3
+import { createApp } from 'vue';
+import store from './store/index';
 import ExempleComponent from './components/ExempleComponent.vue';
 import ProductAdd from './components/products/ProductAdd.vue';
 
-// Créer l'application Vue
+// import Select2 from 'vue3-select2-component';
+
 const app = createApp({});
 
-// Enregistrer les composants
+
 app.component('exemple-component', ExempleComponent);
 app.component('product-add', ProductAdd);
+// app.component('Select2', Select2); // Register Select2 globally
 
-// Monter l'application sur l'élément avec id "app"
+app.use(store);
 app.mount('#app');
