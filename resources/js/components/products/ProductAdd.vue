@@ -1,7 +1,9 @@
 <!-- ProductAdd.vue -->
 <template>
-    <form @action.prevent="submitForm" role="form" action="" method="POST">
+
+    <form @submit.prevent="submitForm" role="form" action="" method="post">
         <div class="row">
+            <show-error></show-error>
             <div class="col-sm-6">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
@@ -36,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Image <span class="text-danger">*</span></label>
-                                <input type="file" v-on="form.image" class="form-control" placeholder="Product">
+                                <input @change="selectImage" type="file" class="form-control" placeholder="Product">
                             </div>
                             <div class="form-group">
                                 <label for="">Cost Price <span class="text-danger">*</span></label>
@@ -113,10 +115,13 @@
 import store from '../../store/index'
 import * as actions from '../../store/action-types'
 import { mapGetters } from 'vuex';
-import Select2 from 'vue3-select2-component'; // Import Select2
-
+// import Select2 from 'vue3-select2-component'; // Import Select2
+import ShowError from '@/components/utils/ShowError.vue';  // Utilisation de l'alias
 export default {
-    components: { Select2 },
+    components: {
+        //  Select2 ,
+         ShowError,
+        },
     methods: {
     },
     name: 'ProductAdd',
@@ -161,6 +166,10 @@ export default {
 
     },
     methods: {
+        selectImage(e){
+           this.form.image= e.target.files[0]
+        },
+
         addItem() {
             let item = {
                 size_id: '',
@@ -173,7 +182,20 @@ export default {
             this.form.items.splice(index, 1)
         },
         submitForm() {
-            console.log();
+            let data = new FormData();
+            data.append('category_id', this.form.category_id)
+            data.append('brand_id', this.form.brand_id)
+            data.append('sku', this.form.sku)
+            data.append('name', this.form.name)
+            data.append('image', this.form.image)
+            data.append('cost_price', this.form.cost_price)
+            data.append('retail_price', this.form.retail_price)
+            data.append('year', this.form.year)
+            data.append('description', this.form.description)
+            data.append('status', this.form.status)
+            data.append('items', this.form.items)
+            store.dispatch(actions.ADD_PRODUCT, data)
+            
         }
     }
 };
