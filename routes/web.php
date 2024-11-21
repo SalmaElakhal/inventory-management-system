@@ -6,6 +6,12 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SizesController;
 use Illuminate\Support\Facades\Route;
 
+
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,6 +39,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/sizes', SizesController::class);
     //Product
     Route::resource('/products', ProductsController::class);
+
 });
 
 

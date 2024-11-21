@@ -1,14 +1,12 @@
 <!-- ProductAdd.vue -->
 <template>
-
     <form @submit.prevent="submitForm" role="form" action="" method="post" enctype="multipart/form-data">
-
         <div class="row">
             <show-error></show-error>
             <div class="col-sm-6">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <h5 class="card-title">Create Product</h5> <br>
+                        <h5 class="card-title">Update Product</h5> <br>
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Category <span class="text-danger">*</span></label>
@@ -37,6 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Image <span class="text-danger">*</span></label>
+                                <img class="old_image" :src="product.product_image">
                                 <input @change="selectImage" type="file" name="image" class="form-control"
                                     placeholder="image">
                             </div>
@@ -127,6 +126,7 @@ export default {
         //  Select2 ,
         ShowError,
     },
+    props: ['product'],
     methods: {
     },
     name: 'ProductAdd',
@@ -164,7 +164,18 @@ export default {
         store.dispatch(actions.GET_CATEGORIES); // Dispatching action
         store.dispatch(actions.GET_BRANDS); // Dispatching action
         store.dispatch(actions.GET_SIZES); // Dispatching action
+        //set old data de product
+        this.form.category_id = this.product.category_id
+        this.form.brand_id = this.product.brand_id
+        this.form.name = this.product.name
+        this.form.sku = this.product.sku
+        this.form.cost_price = this.product.cost_price
+        this.form.retail_price = this.product.retail_price
+        this.form.year = this.product.year
+        this.form.description = this.product.description
+        this.form.status = this.product.status
 
+        this.form.items = this.product.product_stock;
         //     this.$nextTick(() => {
         //   // Initialiser Select2 sur l'élément
         //   $(this.$refs.select2).select2();
@@ -190,6 +201,7 @@ export default {
         submitForm() {
             console.log(this.form); // Ajouter cette ligne pour déboguer les données
             let data = new FormData();
+            data.append('_method', 'PUT')
             data.append('category_id', this.form.category_id)
             data.append('brand_id', this.form.brand_id)
             data.append('sku', this.form.sku)
@@ -201,9 +213,20 @@ export default {
             data.append('description', this.form.description)
             data.append('status', this.form.status)
             data.append('items', JSON.stringify(this.form.items));
-            store.dispatch(actions.ADD_PRODUCT, data)
+
+            let payload = {
+                data: data,
+                id: this.product.id
+            }
+            store.dispatch(actions.EDIT_PRODUCT, payload)
 
         }
     }
 };
 </script>
+
+<style scoped>
+.old_image{
+    width:100px;
+}
+</style>
