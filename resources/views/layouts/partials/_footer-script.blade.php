@@ -38,21 +38,23 @@
 
 
     
-    $('.sa-delete').on('click', function() {
-      let form_id = $(this).data('form-id');
-        swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                   $('#'+form_id).submit()
-                }
-            });
+    $(document).on('click', '.sa-delete', function() {
+    let form_id = $(this).data('form-id');
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this user!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
     })
+    .then((willDelete) => {
+        if (willDelete) {
+            $('#' + form_id).submit();
+        }
+    });
+});
+
+
 </script>
 
 

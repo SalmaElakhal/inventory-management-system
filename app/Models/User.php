@@ -52,6 +52,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    protected $dates = ['created_at', 'updated_at'];
+
     /**
      * Get the attributes that should be cast.
      *

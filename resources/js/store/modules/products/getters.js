@@ -1,5 +1,5 @@
 export default {
-    getProduits: state => {
-        return state.produits
+    getProducts: state => {
+        return state.products
     }
 }

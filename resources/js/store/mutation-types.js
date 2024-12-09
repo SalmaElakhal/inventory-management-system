@@ -7,13 +7,10 @@ export const SET_CATEGORIES = 'SET_CATEGORIES'
 export const SET_BRANDS = 'SET_BRANDS'
 //Sizes
 export const SET_SIZES = 'SET_SIZES'
-// import Vue from 'vue';
-// import Vuex from 'vuex';
 
-// Vue.use(Vuex)
+//Product
+export const SET_PRODUCTS = 'SET_PRODUCTS'
 
-// export default new Vuex.Store({
-//     modules:{
-        
-//     }
-// })
+//RETURN PRODUCT
+export const SET_RETURN_PRODUCT = 'SET_RETURN_PRODUCT'
+

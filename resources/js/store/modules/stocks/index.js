@@ -4,7 +4,7 @@ import mutations from './mutations'
 
 
 const state = {
-    products: [] // Initialisé avec un tableau vide
+    stocks: [] // Initialisé avec un tableau vide
 };
 
 

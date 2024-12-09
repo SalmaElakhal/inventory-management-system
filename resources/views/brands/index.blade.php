@@ -22,17 +22,15 @@
                 <div class="col-lg-12">
                     <div class="card card-primary card-outline">
                         <div class="card-body">
+                            <a href="{{ route('brands.create') }}" class="btn btn-sm btn-primary"><i
+                                    class="fa fa-plus"></i>Add brand</a> <br> <br>
                             <h5 class="card-title">Brand List</h5> <br>
-
-                            <a href="{{route('brands.create')}}" class="btn btn-sm btn-primary" ><i class="fa fa-plus"></i>Add brand</a> <br> <br>
-
                             <table class="table table-bordered datatable">
-
                                 <thead>
                                     <tr>
                                         <th>#SL</th>
                                         <th>Name</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,33 +39,29 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $brand->name ?? '' }}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="{{ route('brands.edit', $brand->id) }}"
                                                         class="btn btn-sm btn-info">
                                                         <i class="fa fa-edit"></i>Edit
                                                     </a>
-
-                                                    <a href="javascipt:;"
-                                                        class="btn btn-sm btn-danger sa-delete" data-form-id="brand-delete-{{ $brand->id }}">
+                                                    <a href="javascipt:;" class="btn btn-sm btn-danger sa-delete"
+                                                        data-form-id="brand-delete-{{ $brand->id }}">
                                                         <i class="fa fa-trash"></i>Delete
                                                     </a>
-                                                    <form id="brand-delete-{{ $brand->id }}" action="{{ route('brands.destroy', $brand->id) }}" method="POST">
+                                                    <form id="brand-delete-{{ $brand->id }}"
+                                                        action="{{ route('brands.destroy', $brand->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-
                                                     </form>
-
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @endif
                                 </tbody>
                             </table>
-
                         </div>
                     </div><!-- /.card -->
                 </div>
-
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

@@ -60,7 +60,7 @@ class ProductsController extends Controller
 
         //store product
         $product = new Product();
-        $product->user_id = Auth::id();
+        $product->user_id = Auth::id(); 
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->sku = $request->sku;
@@ -207,7 +207,6 @@ class ProductsController extends Controller
 
         return  response()->json([
             'success' => true,
-            'flash_message' => 'Product updated successfully'
         ], Response::HTTP_OK);
     }
 
@@ -222,5 +221,14 @@ class ProductsController extends Controller
         $product->delete();
         flash('Product deleted successfully')->success();
         return back();
+    }
+
+    public function getProductsJson(){
+        $products = Product::with(['product_stocks.size'])->get();
+        return response()->json([
+            'success' => true,
+            'data' => $products,
+        ], Response::HTTP_OK);
+     
     }
 }

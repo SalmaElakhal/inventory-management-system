@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $appends = ['product_image'];
+    protected $appends = ['product_image', 'text'];
     public const STATUS_ACTIVE = 1;
     public const STATUS_INACTIVE = 0;
 
@@ -16,7 +16,10 @@ class Product extends Model
     public function getProductImageAttribute(){
         return asset('storage/product_images/'. $this->image);
     }
-
+    
+    public function getTextAttribute(){
+        return $this->name;
+    }
     //relations
     public function category(){
         return $this->belongsTo(Category::class);
@@ -33,7 +36,14 @@ class Product extends Model
         return $this->hasMany(ProductSizeStock::class);
     }
 
-    public function product_stock(){
-        return $this->hasMany(ProductSizeStock::class);
-    }
+    public function product_stocks()
+{
+    return $this->hasMany(ProductSizeStock::class);
+}
+
+public function product_stock()
+{
+    return $this->hasMany(ProductSizeStock::class);
+}
+
 }

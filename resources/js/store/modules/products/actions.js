@@ -16,6 +16,7 @@ export default {
       )
   },
 
+
   [actions.EDIT_PRODUCT]({ commit }, payload) {
    return  Axios.post(`/products/${payload.id}`, payload.data)
       .then(response => {
@@ -28,5 +29,18 @@ export default {
         commit(mutations.SET_ERRORS, err.response.data.errors)
       }
       )
-  }
+  },
+
+  [actions.GET_PRODUCTS]({ commit }) {
+     Axios.get('/api/products')
+        .then(response => {
+            if (response.data.success == true) {
+                commit(mutations.SET_PRODUCTS, response.data.data);
+            }
+        })
+        .catch(err => {
+            console.error(err.response);
+        });
+}
+
 }

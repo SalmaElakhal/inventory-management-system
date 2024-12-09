@@ -96,7 +96,7 @@
                                     <tr>
                                         <td> {{$p_stock->size->size ?? ''}} </td>
                                         <td> {{$p_stock->location ?? ''}} </td>
-                                        <td> {{$p_stock->quatity ?? 0}} </td>
+                                        <td> {{$p_stock->quantity ?? 0}} </td>
                                     </tr>
                                         
                                     @endforeach
@@ -110,3 +110,4 @@
         </div>
     </div>
 @endsection
+

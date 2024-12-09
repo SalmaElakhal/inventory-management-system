@@ -17,7 +17,6 @@
                                     <option v-for="(item, index) in categories" :key="index" :value="item.id">{{
                                         item.name }}</option>
                                 </select>
-                                <!-- <Select2 v-model="form.brand_id" :options="categories" :settings="{ placeholder: 'Selected category'} " ></Select2> -->
                             </div>
                             <div class="form-group">
                                 <label>Brands <span class="text-danger">*</span></label>
@@ -85,8 +84,7 @@
                             <div class="col-sm-4">
                                 <select class="form-control" v-model="item.size_id">
                                     <option value="">Select size</option>
-                                    <!-- <option v-for="(size, index) in sizes" :key="index" value="size.id">{{ size.size }}
-                                    </option> -->
+                                   
                                     <option v-for="(size, index) in sizes" :key="index" :value="size.id">
                                         {{ size.size }}
                                     </option>
@@ -120,11 +118,9 @@
 import store from '../../store/index'
 import * as actions from '../../store/action-types'
 import { mapGetters } from 'vuex';
-// import Select2 from 'vue3-select2-component'; // Import Select2
 import ShowError from '@/components/utils/ShowError.vue';  // Utilisation de l'alias
 export default {
     components: {
-        //  Select2 ,
         ShowError,
     },
     methods: {
@@ -164,11 +160,6 @@ export default {
         store.dispatch(actions.GET_CATEGORIES); // Dispatching action
         store.dispatch(actions.GET_BRANDS); // Dispatching action
         store.dispatch(actions.GET_SIZES); // Dispatching action
-
-        //     this.$nextTick(() => {
-        //   // Initialiser Select2 sur l'élément
-        //   $(this.$refs.select2).select2();
-        // });
 
     },
     methods: {
